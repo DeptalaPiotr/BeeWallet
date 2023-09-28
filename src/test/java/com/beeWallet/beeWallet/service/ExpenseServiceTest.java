@@ -102,4 +102,14 @@ class ExpenseServiceTest {
 
         // Then
     }
+
+    @Test
+    void list() {
+        // Given
+
+        // When
+        expenseService.list();
+        // Then
+
+    }
 }

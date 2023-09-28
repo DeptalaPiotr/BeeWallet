@@ -7,6 +7,7 @@ import com.beeWallet.beeWallet.repository.entity.ExpenseEntity;
 import com.beeWallet.beeWallet.web.model.ExpenseModel;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -65,8 +66,13 @@ public class ExpenseService {
     }
 
     // L - list
-    public void list() {
+    public List<ExpenseModel> list() {
         LOGGER.info("list()");
-        LOGGER.info("list(...)");
+        List<ExpenseEntity> expenseEntities = expenseRepository.findAll();
+        List<ExpenseModel> listedExpenseModels = expenseMapper.fromEntities(expenseEntities);
+        LOGGER.info("list(...) " +listedExpenseModels);
+        return listedExpenseModels;
     }
+
+    // Summary the expense prices
 }

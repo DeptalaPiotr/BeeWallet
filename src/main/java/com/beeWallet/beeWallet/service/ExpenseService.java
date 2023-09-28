@@ -75,7 +75,7 @@ public class ExpenseService {
     }
 
     // Summary the expense prices
-    public Double summaryPrices() {
+    public Double summaryExpensePrices() {
         LOGGER.info("from()");
         List<ExpenseEntity> expenseEntities = expenseRepository.findAll();
         double totalPricesSum = expenseEntities.stream()

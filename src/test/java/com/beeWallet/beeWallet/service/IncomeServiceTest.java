@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.Assert;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static com.beeWallet.beeWallet.web.model.IncomeModel.IncomenEnum.BEE_POLLEN;
 import static com.beeWallet.beeWallet.web.model.IncomeModel.IncomenEnum.HIVE_AND_ELEMENTS;
@@ -102,5 +103,23 @@ class IncomeServiceTest {
 
     @Test
     void list() {
+        // Given
+
+        // When
+        List<IncomeModel> incomeModels = incomeService.list();
+
+        // Then
+        Assertions.assertAll(
+                ()->Assert.notNull(incomeModels,"incomeModels is NULL!")
+        );
+    }
+
+    @Test
+    void summaryIncomePrices() {
+        // Given
+
+        // When
+        incomeService.summaryIncomePrices();
+        // Then
     }
 }

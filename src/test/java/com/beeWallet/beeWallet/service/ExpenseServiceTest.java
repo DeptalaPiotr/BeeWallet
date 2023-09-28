@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static com.beeWallet.beeWallet.web.model.ExpenseModel.ExpenseEnum.BEE;
 import static com.beeWallet.beeWallet.web.model.ExpenseModel.ExpenseEnum.FOOD_FOR_BEES;
@@ -108,8 +109,12 @@ class ExpenseServiceTest {
         // Given
 
         // When
-        expenseService.list();
+        List<ExpenseModel> expenseModels = expenseService.list();
+
         // Then
+        Assertions.assertAll(
+                ()-> Assert.notNull(expenseModels,"expenseModels is NULL!")
+        );
 
     }
 
@@ -118,7 +123,7 @@ class ExpenseServiceTest {
         // Given
 
         // When
-        expenseService.summaryPrices();
+        expenseService.summaryExpensePrices();
         // Then
     }
 }

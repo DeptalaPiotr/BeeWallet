@@ -7,6 +7,7 @@ import com.beeWallet.beeWallet.service.mapper.IncomeMapper;
 import com.beeWallet.beeWallet.web.model.IncomeModel;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -64,8 +65,22 @@ public class IncomeService {
     }
 
     // L - list
-    public void list() {
+    public List<IncomeModel> list() {
         LOGGER.info("list()");
-        LOGGER.info("list(...)");
+        List<IncomeEntity> incomeRepositoryAll = incomeRepository.findAll();
+        List<IncomeModel> incomeModels = incomeMapper.fromEntities(incomeRepositoryAll);
+        LOGGER.info("list(...) " + incomeModels);
+        return incomeModels;
+    }
+
+    // Summary income prices
+    public Double summaryIncomePrices() {
+        LOGGER.info("from()");
+        List<IncomeEntity> incomeEntities = incomeRepository.findAll();
+        double incomeSum = incomeEntities.stream()
+                .mapToDouble(IncomeEntity::getPrice)
+                .sum();
+        LOGGER.info("from(...) = " + incomeSum);
+        return incomeSum;
     }
 }

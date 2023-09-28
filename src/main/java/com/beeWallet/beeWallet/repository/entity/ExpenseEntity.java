@@ -1,6 +1,6 @@
 package com.beeWallet.beeWallet.repository.entity;
 
-import com.beeWallet.beeWallet.enums.ExpanseEnum;
+import com.beeWallet.beeWallet.enums.ExpenseEnum;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -13,24 +13,24 @@ public class ExpenseEntity {
     @GeneratedValue
     private Long id;
 
-    private ExpanseEnum name;
+    private ExpenseEnum name;
     private Double price;
     private LocalDate date;
 
     public ExpenseEntity() {
     }
 
-    public ExpenseEntity(ExpanseEnum name, Double price, LocalDate date) {
+    public ExpenseEntity(ExpenseEnum name, Double price, LocalDate date) {
         this.name = name;
         this.price = price;
         this.date = date;
     }
 
-    public ExpanseEnum getName() {
+    public ExpenseEnum getName() {
         return name;
     }
 
-    public void setName(ExpanseEnum name) {
+    public void setName(ExpenseEnum name) {
         this.name = name;
     }
 

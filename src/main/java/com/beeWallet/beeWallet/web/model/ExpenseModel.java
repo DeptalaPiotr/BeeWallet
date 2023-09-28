@@ -1,29 +1,29 @@
 package com.beeWallet.beeWallet.web.model;
 
-import com.beeWallet.beeWallet.enums.ExpanseEnum;
+import com.beeWallet.beeWallet.enums.ExpenseEnum;
 
 import java.time.LocalDate;
 
 public class ExpenseModel {
 
-   private ExpanseEnum name;
+   private ExpenseEnum name;
    private Double price;
    private LocalDate date;
 
     public ExpenseModel() {
     }
 
-    public ExpenseModel(ExpanseEnum name, Double price, LocalDate date) {
+    public ExpenseModel(ExpenseEnum name, Double price, LocalDate date) {
         this.name = name;
         this.price = price;
         this.date = date;
     }
 
-    public ExpanseEnum getName() {
+    public ExpenseEnum getName() {
         return name;
     }
 
-    public void setName(ExpanseEnum name) {
+    public void setName(ExpenseEnum name) {
         this.name = name;
     }
 

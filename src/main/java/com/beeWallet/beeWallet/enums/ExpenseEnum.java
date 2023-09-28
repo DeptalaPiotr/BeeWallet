@@ -1,6 +1,6 @@
 package com.beeWallet.beeWallet.enums;
 
-public enum ExpanseEnum {
+public enum ExpenseEnum {
     HIVE_AND_ELEMENTS,
     BEE,
     HONEY_EXTRACTOR,

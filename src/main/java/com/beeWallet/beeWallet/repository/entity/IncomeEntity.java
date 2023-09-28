@@ -20,14 +20,6 @@ public class IncomeEntity {
     public IncomeEntity() {
     }
 
-    public enum IncomenEnum {
-    HONEY,
-    PROPOLIS,
-    BEE_POLLEN,
-    BEES,
-    HIVE_AND_ELEMENTS
-}
-
     public IncomeEntity(IncomenEnum name, Double price, LocalDate date) {
         this.name = name;
         this.price = price;
@@ -73,5 +65,22 @@ public class IncomeEntity {
                 ", price=" + price +
                 ", date=" + date +
                 '}';
+    }
+
+    public enum IncomenEnum {
+        HONEY("Miód"),
+        PROPOLIS("Pierzga"),
+        BEE_POLLEN("Pyłek"),
+        BEES("Odkłady, pakiety pszczele"),
+        HIVE_AND_ELEMENTS("Ul lub elementy");
+        private final String displayName;
+
+        private IncomenEnum(String displayName) {
+            this.displayName = displayName;
+        }
+
+        public String getDisplayName() {
+            return displayName;
+        }
     }
 }

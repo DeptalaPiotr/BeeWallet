@@ -18,14 +18,6 @@ public class ExpenseModel {
         this.date = date;
     }
 
-    public enum ExpenseEnum {
-        HIVE_AND_ELEMENTS,
-        BEE,
-        HONEY_EXTRACTOR,
-        SUPPLEMENTS,
-        FOOD_FOR_BEES
-    }
-
     public Long getId() {
         return id;
     }
@@ -66,5 +58,23 @@ public class ExpenseModel {
                 ", price=" + price +
                 ", date=" + date +
                 '}';
+    }
+
+    public enum ExpenseEnum {
+        BEE("Pakiety lub odkłądy pszczele"),
+        HONEY_EXTRACTOR("Miodarka"),
+        SUPPLEMENTS("Lekarstwa/suplementy"),
+        HIVE_AND_ELEMENTS("Ul lub elementy"),
+        FOOD_FOR_BEES("Pokarm dla pszczół");
+
+        private final String displayName;
+
+        private ExpenseEnum(String displayName) {
+            this.displayName = displayName;
+        }
+
+        public String getDisplayName() {
+            return displayName;
+        }
     }
 }

@@ -13,18 +13,18 @@ public class IncomeModel {
     public IncomeModel() {
     }
 
-    public enum IncomenEnum {
-    HONEY,
-    PROPOLIS,
-    BEE_POLLEN,
-    BEES,
-    HIVE_AND_ELEMENTS
-}
-
     public IncomeModel(IncomenEnum name, Double price, LocalDate date) {
         this.name = name;
         this.price = price;
         this.date = date;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public IncomenEnum getName() {
@@ -51,6 +51,7 @@ public class IncomeModel {
         this.date = date;
     }
 
+
     @Override
     public String toString() {
         return "IncomeModel{" +
@@ -58,6 +59,23 @@ public class IncomeModel {
                 ", price=" + price +
                 ", date=" + date +
                 '}';
+    }
+
+    public enum IncomenEnum {
+        HONEY("Miód"),
+        PROPOLIS("Pierzga"),
+        BEE_POLLEN("Pyłek"),
+        BEES("Odkłady, pakiety pszczele"),
+        HIVE_AND_ELEMENTS("Ul lub elementy");
+        private final String displayName;
+
+        private IncomenEnum(String displayName) {
+            this.displayName = displayName;
+        }
+
+        public String getDisplayName() {
+            return displayName;
+        }
     }
 }
 

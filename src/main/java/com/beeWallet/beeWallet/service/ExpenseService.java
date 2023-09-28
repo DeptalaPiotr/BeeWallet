@@ -39,7 +39,7 @@ public class ExpenseService {
         LOGGER.info("read(" + id + ")");
         Optional<ExpenseEntity> optionalExpenseEntity = expenseRepository.findById(id);
         ExpenseEntity expenseEntity = optionalExpenseEntity.orElseThrow(
-                () -> new ExpenseNotFoundException("not found Expense with ID " + id));
+                () -> new ExpenseNotFoundException("Not found Expense with ID " + id));
         ExpenseModel mappedExpenseModel = expenseMapper.from(expenseEntity);
         LOGGER.info("read(...) " + mappedExpenseModel);
         return mappedExpenseModel;

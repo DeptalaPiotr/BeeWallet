@@ -13,6 +13,7 @@ import org.springframework.util.Assert;
 import java.time.LocalDate;
 
 import static com.beeWallet.beeWallet.web.model.IncomeModel.IncomenEnum.BEE_POLLEN;
+import static com.beeWallet.beeWallet.web.model.IncomeModel.IncomenEnum.HIVE_AND_ELEMENTS;
 import static com.beeWallet.beeWallet.web.model.IncomeModel.IncomenEnum.HONEY;
 import static com.beeWallet.beeWallet.web.model.IncomeModel.IncomenEnum.PROPOLIS;
 import static org.junit.jupiter.api.Assertions.*;
@@ -83,7 +84,20 @@ class IncomeServiceTest {
     }
 
     @Test
-    void delete() {
+    void delete() throws IncomeNotFoundException {
+        // Given
+        IncomeModel testDeleteIncome = new IncomeModel();
+        testDeleteIncome.setDate(LocalDate.now());
+        testDeleteIncome.setName(HIVE_AND_ELEMENTS);
+        testDeleteIncome.setPrice(1455.01);
+
+        IncomeModel incomeModel = incomeService.create(testDeleteIncome);
+        IncomeEntity incomeEntity = incomeMapper.from(incomeModel);
+        Long idToDelete = incomeEntity.getId();
+
+        // When
+        incomeService.delete(idToDelete);
+        // Then
     }
 
     @Test

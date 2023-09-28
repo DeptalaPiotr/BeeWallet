@@ -54,9 +54,13 @@ public class IncomeService {
     }
 
     // D - delete
-    public void delete() {
-        LOGGER.info("delete()");
-        LOGGER.info("delete(...)");
+    public void delete(Long id) throws IncomeNotFoundException {
+        LOGGER.info("delete(" + id + ")");
+        Optional<IncomeEntity> optionalIncome = incomeRepository.findById(id);
+        IncomeEntity incomeEntityToDelete = optionalIncome.orElseThrow(
+                () -> new IncomeNotFoundException("Not found Income with ID" + id));
+        incomeRepository.delete(incomeEntityToDelete);
+        LOGGER.info("delete(...) " + incomeEntityToDelete);
     }
 
     // L - list

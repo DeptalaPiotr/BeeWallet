@@ -1,6 +1,6 @@
 package com.beeWallet.beeWallet.repository.entity;
 
-import com.beeWallet.beeWallet.enums.IncomenEnum;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -19,6 +19,14 @@ public class IncomeEntity {
 
     public IncomeEntity() {
     }
+
+    public enum IncomenEnum {
+    HONEY,
+    PROPOLIS,
+    BEE_POLLEN,
+    BEES,
+    HIVE_AND_ELEMENTS
+}
 
     public IncomeEntity(IncomenEnum name, Double price, LocalDate date) {
         this.name = name;

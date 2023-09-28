@@ -1,7 +1,5 @@
 package com.beeWallet.beeWallet.web.model;
 
-import com.beeWallet.beeWallet.enums.ExpenseEnum;
-
 import java.time.LocalDate;
 
 public class ExpenseModel {
@@ -19,9 +17,18 @@ public class ExpenseModel {
         this.date = date;
     }
 
+    public enum ExpenseEnum {
+        HIVE_AND_ELEMENTS,
+        BEE,
+        HONEY_EXTRACTOR,
+        SUPPLEMENTS,
+        FOOD_FOR_BEES
+    }
+
     public ExpenseEnum getName() {
         return name;
     }
+
 
     public void setName(ExpenseEnum name) {
         this.name = name;

@@ -1,11 +1,11 @@
 package com.beeWallet.beeWallet.repository.entity;
 
-import com.beeWallet.beeWallet.enums.ExpenseEnum;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 import java.time.LocalDate;
+
 @Entity
 public class ExpenseEntity {
 
@@ -18,6 +18,14 @@ public class ExpenseEntity {
     private LocalDate date;
 
     public ExpenseEntity() {
+    }
+
+    public enum ExpenseEnum {
+        HIVE_AND_ELEMENTS,
+        BEE,
+        HONEY_EXTRACTOR,
+        SUPPLEMENTS,
+        FOOD_FOR_BEES
     }
 
     public ExpenseEntity(ExpenseEnum name, Double price, LocalDate date) {

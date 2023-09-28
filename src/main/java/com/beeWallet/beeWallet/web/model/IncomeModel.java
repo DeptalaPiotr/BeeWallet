@@ -1,6 +1,5 @@
 package com.beeWallet.beeWallet.web.model;
 
-import com.beeWallet.beeWallet.enums.IncomenEnum;
 
 import java.time.LocalDate;
 
@@ -11,6 +10,14 @@ public class IncomeModel {
 
     public IncomeModel() {
     }
+
+    public enum IncomenEnum {
+    HONEY,
+    PROPOLIS,
+    BEE_POLLEN,
+    BEES,
+    HIVE_AND_ELEMENTS
+}
 
     public IncomeModel(IncomenEnum name, Double price, LocalDate date) {
         this.name = name;

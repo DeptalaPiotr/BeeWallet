@@ -74,9 +74,9 @@ public class ExpenseService {
         LOGGER.info("list(...) " + listedExpenseModels);
         return listedExpenseModels;}
         else {
-            List<ExpenseModel> searchExpense = expenseRepository.search(filterText);
-//            List<ExpenseModel> expenseModels = expenseMapper.fromEntities(searchExpense);
-            return searchExpense;
+            List<ExpenseEntity> searchExpense = expenseRepository.search(filterText);
+            List<ExpenseModel> expenseModels = expenseMapper.fromEntities(searchExpense);
+            return expenseModels;
         }
     }
 

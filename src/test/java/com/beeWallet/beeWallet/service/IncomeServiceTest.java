@@ -12,6 +12,7 @@ import org.springframework.util.Assert;
 
 import java.time.LocalDate;
 
+import static com.beeWallet.beeWallet.web.model.IncomeModel.IncomenEnum.BEE_POLLEN;
 import static com.beeWallet.beeWallet.web.model.IncomeModel.IncomenEnum.HONEY;
 import static com.beeWallet.beeWallet.web.model.IncomeModel.IncomenEnum.PROPOLIS;
 import static org.junit.jupiter.api.Assertions.*;
@@ -63,6 +64,22 @@ class IncomeServiceTest {
 
     @Test
     void update() {
+        // Given
+        IncomeModel testReadIncome = new IncomeModel();
+        testReadIncome.setDate(LocalDate.now());
+        testReadIncome.setName(PROPOLIS);
+        testReadIncome.setPrice(7.01);
+
+        IncomeModel incomeModel = incomeService.create(testReadIncome);
+        incomeModel.setName(BEE_POLLEN);
+
+        // When
+        IncomeModel updatedIncomeModel = incomeService.update(incomeModel);
+
+        // Then
+        Assertions.assertAll(
+                ()-> Assert.notNull(updatedIncomeModel,"updatedIncomeModel")
+        );
     }
 
     @Test

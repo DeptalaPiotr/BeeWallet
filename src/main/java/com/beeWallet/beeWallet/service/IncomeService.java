@@ -44,9 +44,13 @@ public class IncomeService {
     }
 
     // U - update
-    public void update() {
-        LOGGER.info("update()");
-        LOGGER.info("update(...)");
+    public IncomeModel update(IncomeModel incomeModel) {
+        LOGGER.info("create(" + incomeModel + ")");
+        IncomeEntity incomeEntity = incomeMapper.from(incomeModel);
+        IncomeEntity savedIncome = incomeRepository.save(incomeEntity);
+        IncomeModel updatedIncomeModel = incomeMapper.from(savedIncome);
+        LOGGER.info("create(...) " + updatedIncomeModel);
+        return updatedIncomeModel;
     }
 
     // D - delete

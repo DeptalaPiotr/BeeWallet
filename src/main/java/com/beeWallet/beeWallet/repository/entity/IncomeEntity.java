@@ -1,6 +1,6 @@
 package com.beeWallet.beeWallet.repository.entity;
 
-import com.beeWallet.beeWallet.enums.IncomenEnum;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -24,6 +24,14 @@ public class IncomeEntity {
         this.name = name;
         this.price = price;
         this.date = date;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public IncomenEnum getName() {
@@ -57,5 +65,22 @@ public class IncomeEntity {
                 ", price=" + price +
                 ", date=" + date +
                 '}';
+    }
+
+    public enum IncomenEnum {
+        HONEY("Miód"),
+        PROPOLIS("Pierzga"),
+        BEE_POLLEN("Pyłek"),
+        BEES("Odkłady, pakiety pszczele"),
+        HIVE_AND_ELEMENTS("Ul lub elementy");
+        private final String displayName;
+
+        private IncomenEnum(String displayName) {
+            this.displayName = displayName;
+        }
+
+        public String getDisplayName() {
+            return displayName;
+        }
     }
 }

@@ -1,10 +1,11 @@
 package com.beeWallet.beeWallet.web.model;
 
-import com.beeWallet.beeWallet.enums.IncomenEnum;
 
 import java.time.LocalDate;
 
 public class IncomeModel {
+
+    private Long id;
     private IncomenEnum name;
     private Double price;
     private LocalDate date;
@@ -16,6 +17,14 @@ public class IncomeModel {
         this.name = name;
         this.price = price;
         this.date = date;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public IncomenEnum getName() {
@@ -42,6 +51,7 @@ public class IncomeModel {
         this.date = date;
     }
 
+
     @Override
     public String toString() {
         return "IncomeModel{" +
@@ -49,6 +59,23 @@ public class IncomeModel {
                 ", price=" + price +
                 ", date=" + date +
                 '}';
+    }
+
+    public enum IncomenEnum {
+        HONEY("Miód"),
+        PROPOLIS("Pierzga"),
+        BEE_POLLEN("Pyłek"),
+        BEES("Odkłady, pakiety pszczele"),
+        HIVE_AND_ELEMENTS("Ul lub elementy");
+        private final String displayName;
+
+        private IncomenEnum(String displayName) {
+            this.displayName = displayName;
+        }
+
+        public String getDisplayName() {
+            return displayName;
+        }
     }
 }
 

@@ -26,6 +26,14 @@ public class ExpenseModel {
         FOOD_FOR_BEES
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public ExpenseEnum getName() {
         return name;
     }

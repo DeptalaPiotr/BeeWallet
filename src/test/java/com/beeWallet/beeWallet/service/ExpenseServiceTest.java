@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import static com.beeWallet.beeWallet.web.model.ExpenseModel.ExpenseEnum.BEE;
 import static com.beeWallet.beeWallet.web.model.ExpenseModel.ExpenseEnum.FOOD_FOR_BEES;
 import static com.beeWallet.beeWallet.web.model.ExpenseModel.ExpenseEnum.HIVE_AND_ELEMENTS;
+import static com.beeWallet.beeWallet.web.model.ExpenseModel.ExpenseEnum.HONEY_EXTRACTOR;
 
 
 @SpringBootTest
@@ -82,5 +83,23 @@ class ExpenseServiceTest {
         Assertions.assertAll(
                 ()->Assert.notNull(updatedExpenseModel,"updatedExpenseModel is NULL!")
         );
+    }
+
+    @Test
+    void delete() throws ExpenseNotFoundException {
+        // Given
+        ExpenseModel testedDeleteExpense = new ExpenseModel();
+        testedDeleteExpense.setName(HONEY_EXTRACTOR);
+        testedDeleteExpense.setDate(LocalDate.now());
+        testedDeleteExpense.setPrice(447.99);
+
+        ExpenseModel expenseModel = expenseService.create(testedDeleteExpense);
+        ExpenseEntity mappedExpenseEntity = expenseMapper.from(expenseModel);
+        Long id = mappedExpenseEntity.getId();
+
+        // When
+        expenseService.delete(id);
+
+        // Then
     }
 }

@@ -38,7 +38,7 @@ public class ExpenseService {
         LOGGER.info("read(" + id + ")");
         Optional<ExpenseEntity> optionalExpenseEntity = expenseRepository.findById(id);
         ExpenseEntity expenseEntity = optionalExpenseEntity.orElseThrow(
-                () -> new ExpenseNotFoundException("not found with ID " + id));
+                () -> new ExpenseNotFoundException("not found Expense with ID " + id));
         ExpenseModel mappedExpenseModel = expenseMapper.from(expenseEntity);
         LOGGER.info("read(...) " + mappedExpenseModel);
         return mappedExpenseModel;
@@ -55,9 +55,13 @@ public class ExpenseService {
     }
 
     // D - delete
-    public void delete() {
-        LOGGER.info("delete()");
-        LOGGER.info("delete(...)");
+    public void delete(Long id) throws ExpenseNotFoundException {
+        LOGGER.info("delete(" + id + ")");
+        Optional<ExpenseEntity> epenseOptional = expenseRepository.findById(id);
+        ExpenseEntity expenseEntityToDelete = epenseOptional.orElseThrow(
+                () -> new ExpenseNotFoundException("Not found Expense with ID " + id));
+        expenseRepository.delete(expenseEntityToDelete);
+        LOGGER.info("delete(...) " + expenseEntityToDelete);
     }
 
     // L - list

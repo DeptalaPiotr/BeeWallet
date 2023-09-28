@@ -45,9 +45,13 @@ public class ExpenseService {
     }
 
     // U - update
-    public void update() {
-        LOGGER.info("update()");
-        LOGGER.info("update(...)");
+    public ExpenseModel update(ExpenseModel expenseModel) {
+        LOGGER.info("update(" + expenseModel + ")");
+        ExpenseEntity expenseEntity = expenseMapper.from(expenseModel);
+        ExpenseEntity savedExpense = expenseRepository.save(expenseEntity);
+        ExpenseModel savedExpenseModel = expenseMapper.from(savedExpense);
+        LOGGER.info("update(...) " + savedExpenseModel);
+        return savedExpenseModel;
     }
 
     // D - delete

@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDate;
 
 import static com.beeWallet.beeWallet.web.model.ExpenseModel.ExpenseEnum.BEE;
+import static com.beeWallet.beeWallet.web.model.ExpenseModel.ExpenseEnum.FOOD_FOR_BEES;
 import static com.beeWallet.beeWallet.web.model.ExpenseModel.ExpenseEnum.HIVE_AND_ELEMENTS;
 
 
@@ -60,6 +61,26 @@ class ExpenseServiceTest {
         // Then
         Assertions.assertAll(
                 () -> Assert.notNull(readExpense, "readExpense is NULL!")
+        );
+    }
+
+    @Test
+    void update() {
+        // Given
+        ExpenseModel testedUpdateExpense = new ExpenseModel();
+        testedUpdateExpense.setName(FOOD_FOR_BEES);
+        testedUpdateExpense.setDate(LocalDate.now());
+        testedUpdateExpense.setPrice(1544.00);
+
+        ExpenseModel createdExpenseModel = expenseService.create(testedUpdateExpense);
+
+        // When
+        createdExpenseModel.setPrice(14.44);
+        ExpenseModel updatedExpenseModel = expenseService.update(createdExpenseModel);
+
+        // Then
+        Assertions.assertAll(
+                ()->Assert.notNull(updatedExpenseModel,"updatedExpenseModel is NULL!")
         );
     }
 }

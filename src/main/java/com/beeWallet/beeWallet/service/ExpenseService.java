@@ -1,11 +1,13 @@
 package com.beeWallet.beeWallet.service;
 
-import com.beeWallet.beeWallet.mapper.ExpenseMapper;
+import com.beeWallet.beeWallet.exceptions.ExpenseNotFoundException;
+import com.beeWallet.beeWallet.service.mapper.ExpenseMapper;
 import com.beeWallet.beeWallet.repository.ExpenseRepository;
 import com.beeWallet.beeWallet.repository.entity.ExpenseEntity;
 import com.beeWallet.beeWallet.web.model.ExpenseModel;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 
 @Service
@@ -32,9 +34,14 @@ public class ExpenseService {
     }
 
     // R - read
-    public void read() {
-        LOGGER.info("read()");
-        LOGGER.info("read(...)");
+    public ExpenseModel read(Long id) throws ExpenseNotFoundException {
+        LOGGER.info("read(" + id + ")");
+        Optional<ExpenseEntity> optionalExpenseEntity = expenseRepository.findById(id);
+        ExpenseEntity expenseEntity = optionalExpenseEntity.orElseThrow(
+                () -> new ExpenseNotFoundException("not found with ID " + id));
+        ExpenseModel mappedExpenseModel = expenseMapper.from(expenseEntity);
+        LOGGER.info("read(...) " + mappedExpenseModel);
+        return mappedExpenseModel;
     }
 
     // U - update

@@ -4,9 +4,10 @@ import java.time.LocalDate;
 
 public class ExpenseModel {
 
-   private ExpenseEnum name;
-   private Double price;
-   private LocalDate date;
+    private Long id;
+    private ExpenseEnum name;
+    private Double price;
+    private LocalDate date;
 
     public ExpenseModel() {
     }

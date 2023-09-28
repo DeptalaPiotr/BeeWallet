@@ -34,6 +34,14 @@ public class IncomeEntity {
         this.date = date;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public IncomenEnum getName() {
         return name;
     }

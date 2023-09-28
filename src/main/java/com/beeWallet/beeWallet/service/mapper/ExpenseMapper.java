@@ -1,4 +1,4 @@
-package com.beeWallet.beeWallet.mapper;
+package com.beeWallet.beeWallet.service.mapper;
 
 import com.beeWallet.beeWallet.repository.entity.ExpenseEntity;
 import com.beeWallet.beeWallet.web.model.ExpenseModel;

@@ -4,6 +4,8 @@ package com.beeWallet.beeWallet.web.model;
 import java.time.LocalDate;
 
 public class IncomeModel {
+
+    private Long id;
     private IncomenEnum name;
     private Double price;
     private LocalDate date;

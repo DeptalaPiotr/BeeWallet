@@ -70,9 +70,18 @@ public class ExpenseService {
         LOGGER.info("list()");
         List<ExpenseEntity> expenseEntities = expenseRepository.findAll();
         List<ExpenseModel> listedExpenseModels = expenseMapper.fromEntities(expenseEntities);
-        LOGGER.info("list(...) " +listedExpenseModels);
+        LOGGER.info("list(...) " + listedExpenseModels);
         return listedExpenseModels;
     }
 
     // Summary the expense prices
+    public Double summaryPrices() {
+        LOGGER.info("from()");
+        List<ExpenseEntity> expenseEntities = expenseRepository.findAll();
+        double totalPricesSum = expenseEntities.stream()
+                .mapToDouble(ExpenseEntity::getPrice)
+                .sum();
+        LOGGER.info("from(...) = " + totalPricesSum);
+        return totalPricesSum;
+    }
 }

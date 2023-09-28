@@ -112,4 +112,13 @@ class ExpenseServiceTest {
         // Then
 
     }
+
+    @Test
+    void summaryPrices() {
+        // Given
+
+        // When
+        expenseService.summaryPrices();
+        // Then
+    }
 }

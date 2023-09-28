@@ -66,12 +66,18 @@ public class ExpenseService {
     }
 
     // L - list
-    public List<ExpenseModel> list() {
+    public List<ExpenseModel> list(String filterText) {
         LOGGER.info("list()");
+        if(filterText==null || filterText.isEmpty()){
         List<ExpenseEntity> expenseEntities = expenseRepository.findAll();
         List<ExpenseModel> listedExpenseModels = expenseMapper.fromEntities(expenseEntities);
         LOGGER.info("list(...) " + listedExpenseModels);
-        return listedExpenseModels;
+        return listedExpenseModels;}
+        else {
+            List<ExpenseModel> searchExpense = expenseRepository.search(filterText);
+//            List<ExpenseModel> expenseModels = expenseMapper.fromEntities(searchExpense);
+            return searchExpense;
+        }
     }
 
     // Summary the expense prices

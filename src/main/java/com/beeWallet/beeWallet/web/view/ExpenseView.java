@@ -2,6 +2,7 @@ package com.beeWallet.beeWallet.web.view;
 
 import com.beeWallet.beeWallet.service.ExpenseService;
 import com.beeWallet.beeWallet.web.model.ExpenseModel;
+import com.beeWallet.beeWallet.web.view.list.ExpenseForm;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
@@ -21,7 +22,7 @@ public class ExpenseView extends VerticalLayout {
     private ExpenseService expenseService;
     TextField filterText = new TextField();
     private Grid<ExpenseModel> expenseModelGrid = new Grid<>(ExpenseModel.class);
-    private ExpenseModel expenseModel;
+    private ExpenseForm expenseForm;
 
     public ExpenseView(ExpenseService service) {
         this.expenseService = service;
@@ -30,14 +31,29 @@ public class ExpenseView extends VerticalLayout {
 
         configureGrid();
         configureForm();
-
         add(
                 getToolbar(),
-                getContact()
+                getContent()
         );
+        updateList();
+    }
 
-//        updateList();
-//        closeEditor();
+    private void updateList() {
+        expenseModelGrid.setItems(expenseService.list(filterText.getValue()));
+    }
+
+    private Component getContent() {
+        HorizontalLayout content = new HorizontalLayout(expenseModelGrid, expenseForm);
+        content.setFlexGrow(2, expenseModelGrid);
+        content.setFlexGrow(1, expenseForm);
+        content.addClassName("content");
+        content.setSizeFull();
+        return content;
+    }
+
+    private void configureForm() {
+        expenseForm = new ExpenseForm();
+        expenseForm.setWidth("25em");
     }
 
     private void configureGrid() {
@@ -47,38 +63,19 @@ public class ExpenseView extends VerticalLayout {
         expenseModelGrid.getColumns().forEach(col -> col.setAutoWidth(true));
     }
 
-    private void configureForm() {
-        expenseModel = new ExpenseModel();
-//        expenseModel.setWidth("25em");
-
-//        expenseModel.addSaveListener(this::saveContact);
-//        expenseModel.addDeleteListener(this::deleteContact);
-//        expenseModel.addCloseListener(e->closeEditor());
-    }
-
     private Component getToolbar() {
         filterText.setPlaceholder("Find expense... ");
         filterText.setClearButtonVisible(true);
         filterText.setValueChangeMode(ValueChangeMode.LAZY);
-//        filterText.addValueChangeListener(e -> updateList());
+        filterText.addValueChangeListener(e -> updateList());
 
-        Button addContactButton = new Button("Add contact");
-        addContactButton.addClickListener(e -> expenseService.create(null));
+        Button addExpenseButton = new Button("Add expense");
+        addExpenseButton.addClickListener(e -> expenseService.create(null));
 
-        HorizontalLayout toolbar = new HorizontalLayout(filterText, addContactButton);
+        HorizontalLayout toolbar = new HorizontalLayout(filterText, addExpenseButton);
         toolbar.addClassName("toolbar");
 
         return toolbar;
-    }
-
-    private Component getContact() {
-        HorizontalLayout content = new HorizontalLayout(expenseModelGrid);
-        content.setFlexGrow(2, expenseModelGrid);
-        content.setFlexGrow(1);
-        content.addClassName("content");
-        content.setSizeFull();
-
-        return content;
     }
 
 }

@@ -10,11 +10,7 @@ import java.util.List;
 
 @Repository
 public interface ExpenseRepository extends JpaRepository<ExpenseEntity,Long> {
-
-    // TODO: 28.09.2023
-    //fix the search option
-    @Query("SELECT e FROM ExpenseEntity e " +
-            "WHERE lower(e.name) LIKE lower(concat('%', :searchTerm, '%'))")
+    @Query("SELECT e FROM ExpenseEntity e ")
     List<ExpenseEntity> search(@Param("searchTerm") String searchTerm);
 }
 //    @Query("select c from Contact c " +

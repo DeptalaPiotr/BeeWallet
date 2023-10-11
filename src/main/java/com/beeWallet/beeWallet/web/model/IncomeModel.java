@@ -1,22 +1,22 @@
 package com.beeWallet.beeWallet.web.model;
 
-
 import java.time.LocalDate;
 
 public class IncomeModel {
 
     private Long id;
-    private IncomenEnum name;
-    private Double price;
     private LocalDate date;
+    private String name;
+    private Double price;
 
     public IncomeModel() {
     }
 
-    public IncomeModel(IncomenEnum name, Double price, LocalDate date) {
+    public IncomeModel(Long id, LocalDate date, String name, Double price) {
+        this.id = id;
+        this.date = date;
         this.name = name;
         this.price = price;
-        this.date = date;
     }
 
     public Long getId() {
@@ -27,11 +27,19 @@ public class IncomeModel {
         this.id = id;
     }
 
-    public IncomenEnum getName() {
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public String getName() {
         return name;
     }
 
-    public void setName(IncomenEnum name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -43,40 +51,36 @@ public class IncomeModel {
         this.price = price;
     }
 
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
 
     @Override
     public String toString() {
         return "IncomeModel{" +
-                "name=" + name +
-                ", price=" + price +
+                "id=" + id +
                 ", date=" + date +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", category=" +
                 '}';
     }
 
-    public enum IncomenEnum {
-        HONEY("Miód"),
-        PROPOLIS("Pierzga"),
-        BEE_POLLEN("Pyłek"),
-        BEES("Odkłady, pakiety pszczele"),
-        HIVE_AND_ELEMENTS("Ul lub elementy");
-        private final String displayName;
-
-        private IncomenEnum(String displayName) {
-            this.displayName = displayName;
-        }
-
-        public String getDisplayName() {
-            return displayName;
-        }
-    }
+//    public enum CategoryEnum {
+//        HONEY("Miód"),
+//        PROPOLIS("Pierzga"),
+//        BEE_POLLEN("Pyłek"),
+//        BEES("Odkłady, pakiety pszczele"),
+//        HIVE_AND_ELEMENTS("Ul lub elementy"),
+//        SUPPLEMENTS("Lekarstwa/suplementy"),
+//        FOOD_FOR_BEES("Pokarm dla pszczół");
+//        private final String displayName;
+//
+//        private CategoryEnum(String displayName) {
+//            this.displayName = displayName;
+//        }
+//
+//        public String getDisplayName() {
+//            return displayName;
+//        }
+//    }
 }
 
 

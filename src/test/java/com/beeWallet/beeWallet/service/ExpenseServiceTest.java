@@ -13,12 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDate;
 import java.util.List;
 
-import static com.beeWallet.beeWallet.web.model.ExpenseModel.ExpenseEnum.BEE;
-import static com.beeWallet.beeWallet.web.model.ExpenseModel.ExpenseEnum.FOOD_FOR_BEES;
-import static com.beeWallet.beeWallet.web.model.ExpenseModel.ExpenseEnum.HIVE_AND_ELEMENTS;
-import static com.beeWallet.beeWallet.web.model.ExpenseModel.ExpenseEnum.HONEY_EXTRACTOR;
-
-
 @SpringBootTest
 class ExpenseServiceTest {
 
@@ -32,7 +26,7 @@ class ExpenseServiceTest {
     void create() {
         // Given
         ExpenseModel testedExpenseModel = new ExpenseModel();
-        testedExpenseModel.setName(HIVE_AND_ELEMENTS);
+        testedExpenseModel.setName("Ul wielkopolski");
         testedExpenseModel.setPrice(199.99);
         testedExpenseModel.setDate(LocalDate.now());
 
@@ -49,7 +43,7 @@ class ExpenseServiceTest {
     void read() throws ExpenseNotFoundException {
         // Given
         ExpenseModel testedReadExpense = new ExpenseModel();
-        testedReadExpense.setName(BEE);
+        testedReadExpense.setName("Pyłek");
         testedReadExpense.setDate(LocalDate.now());
         testedReadExpense.setPrice(47.99);
 
@@ -70,7 +64,7 @@ class ExpenseServiceTest {
     void update() {
         // Given
         ExpenseModel testedUpdateExpense = new ExpenseModel();
-        testedUpdateExpense.setName(FOOD_FOR_BEES);
+        testedUpdateExpense.setName("Ciasto cukrowe");
         testedUpdateExpense.setDate(LocalDate.now());
         testedUpdateExpense.setPrice(1544.00);
 
@@ -82,7 +76,7 @@ class ExpenseServiceTest {
 
         // Then
         Assertions.assertAll(
-                ()->Assert.notNull(updatedExpenseModel,"updatedExpenseModel is NULL!")
+                () -> Assert.notNull(updatedExpenseModel, "updatedExpenseModel is NULL!")
         );
     }
 
@@ -90,7 +84,7 @@ class ExpenseServiceTest {
     void delete() throws ExpenseNotFoundException {
         // Given
         ExpenseModel testedDeleteExpense = new ExpenseModel();
-        testedDeleteExpense.setName(HONEY_EXTRACTOR);
+        testedDeleteExpense.setName("Ul dadant");
         testedDeleteExpense.setDate(LocalDate.now());
         testedDeleteExpense.setPrice(447.99);
 
@@ -109,13 +103,12 @@ class ExpenseServiceTest {
         // Given
 
         // When
-        List<ExpenseModel> expenseModels = expenseService.list();
+        List<ExpenseModel> expenseModels = expenseService.list(null);
 
         // Then
         Assertions.assertAll(
-                ()-> Assert.notNull(expenseModels,"expenseModels is NULL!")
+                () -> Assert.notNull(expenseModels, "expenseModels is NULL!")
         );
-
     }
 
     @Test

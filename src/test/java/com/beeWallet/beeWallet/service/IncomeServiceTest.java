@@ -13,11 +13,6 @@ import org.springframework.util.Assert;
 import java.time.LocalDate;
 import java.util.List;
 
-import static com.beeWallet.beeWallet.web.model.IncomeModel.IncomenEnum.BEE_POLLEN;
-import static com.beeWallet.beeWallet.web.model.IncomeModel.IncomenEnum.HIVE_AND_ELEMENTS;
-import static com.beeWallet.beeWallet.web.model.IncomeModel.IncomenEnum.HONEY;
-import static com.beeWallet.beeWallet.web.model.IncomeModel.IncomenEnum.PROPOLIS;
-import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class IncomeServiceTest {
 
@@ -30,8 +25,8 @@ class IncomeServiceTest {
     void create() {
         // Given
         IncomeModel testCreateIncome = new IncomeModel();
+        testCreateIncome.setName("Miód Wielokwiat");
         testCreateIncome.setDate(LocalDate.now());
-        testCreateIncome.setName(HONEY);
         testCreateIncome.setPrice(14.55);
 
         // When
@@ -48,7 +43,7 @@ class IncomeServiceTest {
         // Given
         IncomeModel testReadIncome = new IncomeModel();
         testReadIncome.setDate(LocalDate.now());
-        testReadIncome.setName(PROPOLIS);
+        testReadIncome.setName("Propolis");
         testReadIncome.setPrice(55.55);
 
         IncomeModel incomeModel = incomeService.create(testReadIncome);
@@ -68,12 +63,12 @@ class IncomeServiceTest {
     void update() {
         // Given
         IncomeModel testReadIncome = new IncomeModel();
+        testReadIncome.setName("Miodarka");
         testReadIncome.setDate(LocalDate.now());
-        testReadIncome.setName(PROPOLIS);
         testReadIncome.setPrice(7.01);
 
         IncomeModel incomeModel = incomeService.create(testReadIncome);
-        incomeModel.setName(BEE_POLLEN);
+        incomeModel.setName("Pakiet");
 
         // When
         IncomeModel updatedIncomeModel = incomeService.update(incomeModel);
@@ -89,7 +84,7 @@ class IncomeServiceTest {
         // Given
         IncomeModel testDeleteIncome = new IncomeModel();
         testDeleteIncome.setDate(LocalDate.now());
-        testDeleteIncome.setName(HIVE_AND_ELEMENTS);
+        testDeleteIncome.setName("Suszarka do pyłku");
         testDeleteIncome.setPrice(1455.01);
 
         IncomeModel incomeModel = incomeService.create(testDeleteIncome);

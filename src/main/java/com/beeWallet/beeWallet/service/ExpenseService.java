@@ -29,9 +29,9 @@ public class ExpenseService {
         LOGGER.info("create(" + expanse + ")");
         ExpenseEntity expenseEntity = expenseMapper.from(expanse);
         ExpenseEntity savedExpenseEntity = expenseRepository.save(expenseEntity);
-        ExpenseModel savedExpenseModel = expenseMapper.from(savedExpenseEntity);
-        LOGGER.info("create(...) " + savedExpenseModel);
-        return savedExpenseModel;
+//        ExpenseModel savedExpenseModel = expenseMapper.from(savedExpenseEntity);
+        LOGGER.info("create(...) " + expenseEntity);
+        return expanse;
     }
 
     // R - read
